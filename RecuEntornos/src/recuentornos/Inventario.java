@@ -83,7 +83,9 @@ public class Inventario {
         for (int i = 0; i < componentes.length; i++) {
             if (componentes[i] != null && componentes[i].getIdProducto().equalsIgnoreCase(id)) {
                 if (componentes[i].getClass().getSimpleName().equalsIgnoreCase("ram")) {
-
+                    do {                        
+                        
+                    } while (true);
                 } else {
                     System.out.println("Nuevo nombre del modelo (anterior: '" + componentes[i].getNombreModelo() + "' )");
                     componentes[i].setNombreModelo(lector.nextLine());
