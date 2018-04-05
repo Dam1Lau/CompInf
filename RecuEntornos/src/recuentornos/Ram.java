@@ -5,21 +5,30 @@
  */
 package recuentornos;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Laura
  */
 public class Ram extends Componente {
+
     private String tipo;
     private int[] capacidades;
+    private double precio;
 
     public Ram() {
     }
-
-    public Ram(String tipo, int[] capacidades, String idProducto, String nombreModelo, int stock, Fabricante fabricante) {
+    
+    public Ram(String id){
+        super.idProducto = id;
+    }
+    
+    public Ram(String tipo, int[] capacidades, String idProducto, String nombreModelo, int stock, Fabricante fabricante, double precio) {
         super(idProducto, nombreModelo, stock, fabricante);
         this.tipo = tipo;
         this.capacidades = capacidades;
+        this.precio = precio;
     }
 
     public String getTipo() {
@@ -36,16 +45,35 @@ public class Ram extends Componente {
 
     public void setCapacidades(int[] capacidades) {
         this.capacidades = capacidades;
+
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    @Override
+    public double calcularCoste(int cantidad) {
+        double precioFinal;
+            if(this.getTipo().equalsIgnoreCase("sram"))
+                precioFinal = this.precio * cantidad;
+            else
+                precioFinal = this.precio * 1.2 * cantidad;
+            
+        return precioFinal ;
     }
 
     @Override
     public String toString() {
-        StringBuilder capa = new StringBuilder();
-        for (int i = 0; i < capacidades.length; i++) {
-            capa.append(capacidades[i]).append(" GB //    ");
-        }
-        return super.toString() + "\nRAM de tipo " + tipo + "Capacidad (GB): " + capa.toString();
+//        StringBuilder capa = new StringBuilder();
+//        for (int i = 0; i < capacidades.length; i++) {
+//            capa.append(capacidades[i]).append(" GB //    ");
+//        }
+        return super.toString() + "\nRAM de tipo " + tipo + "Capacidad (GB): " + Arrays.toString(capacidades);
     }
-    
-    
+
 }

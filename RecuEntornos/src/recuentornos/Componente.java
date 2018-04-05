@@ -9,7 +9,7 @@ package recuentornos;
  *
  * @author Laura
  */
-public class Componente {
+public abstract class Componente implements Comparable<Componente> {
 
     protected String idProducto, nombreModelo;
     protected int stock;
@@ -63,9 +63,14 @@ public class Componente {
         this.fabricante = fabricante;
     }
 
+    public abstract double calcularCoste(int cantidad);
+
     @Override
     public String toString() {
         return "Identificador del Producto: " + idProducto + "\nModelo: " + nombreModelo + "\nCantidad en stock: " + stock + "\nFabricante: " + fabricante;
     }
-
+     @Override
+    public int compareTo(Componente o) {
+       return this.stock-o.stock;
+    }
 }

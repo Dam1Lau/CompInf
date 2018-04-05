@@ -5,6 +5,7 @@
  */
 package recuentornos;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -16,10 +17,10 @@ public class Inventario {
     private Componente[] componentes;
 
     public Inventario() {
-        componentes = new Componente[10];
-        componentes[0] = new Cpu(4, 12, "Id001", "Modelo 1", 25, new Fabricante());
-        componentes[1] = new Cpu(8, 24, "Id0000", "Modelo 2", 42, new Fabricante());
-        componentes[2] = new Ram("AMD", new int[]{40, 20, 10}, "IDP 001", "Modelo GG", 80, new Fabricante());
+        componentes = new Componente[3];
+        componentes[0] = new Cpu(4, 12, "Id001", "Modelo 1", 25, new Fabricante(), 15);
+        componentes[1] = new Cpu(8, 24, "Id0000", "Modelo 2", 3, new Fabricante(), 10);
+        componentes[2] = new Ram("AMD", new int[]{40, 20, 10}, "IDP 001", "Modelo GG", 80, new Fabricante(), 20);
     }
 
     public Componente[] getComponentes() {
@@ -56,9 +57,16 @@ public class Inventario {
 
     public boolean darAlta(String id) {
         boolean altaCorrecta = false;
+        int opcion;
+        Scanner lector = new Scanner(System.in);
+        System.out.println("Añadir nuevo componente al inventario: 1- RAM   2- CPU");
+        opcion = lector.nextInt();
         for (int i = 0; i < componentes.length && altaCorrecta == false; i++) {
-            if (componentes[i] == null) {
-                componentes[i] = new Componente(id);
+            if (componentes[i] == null && opcion == 1) {
+                componentes[i] = new Ram(id);
+                altaCorrecta = true;
+            } else if (opcion == 2) {
+                componentes[i] = new Cpu(id);
                 altaCorrecta = true;
             }
         }
@@ -83,8 +91,8 @@ public class Inventario {
         for (int i = 0; i < componentes.length; i++) {
             if (componentes[i] != null && componentes[i].getIdProducto().equalsIgnoreCase(id)) {
                 if (componentes[i].getClass().getSimpleName().equalsIgnoreCase("ram")) {
-                    do {                        
-                        
+                    do {
+
                     } while (true);
                 } else {
                     System.out.println("Nuevo nombre del modelo (anterior: '" + componentes[i].getNombreModelo() + "' )");
@@ -95,4 +103,10 @@ public class Inventario {
         }
 
     }
+
+    public void ordenarStock() {
+      Arrays.sort(componentes);
+      Arrays.toString(componentes);
+    }
+   
 }

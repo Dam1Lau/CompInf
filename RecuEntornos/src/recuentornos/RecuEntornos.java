@@ -16,10 +16,12 @@ public class RecuEntornos {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        
+
         Inventario inv = new Inventario();
-        inv.listarAtributosComunes();
+//        inv.listarAtributosComunes();
+//        inv.ordenarStock();
+        inv.listarComponentes();
+        inv.ordenarStock();
     }
-    
+
 }
